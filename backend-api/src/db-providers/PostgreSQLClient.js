@@ -1,4 +1,4 @@
-class MysqlClient {
+class PostgreSQLClient {
   constructor(pool) {
     this.pool = pool;
   }
@@ -6,7 +6,6 @@ class MysqlClient {
   /**
    * Begin database transaction
    */
-  // 开始事务，首先取得连接
   beginTransaction() {
     return this._getConnection().then(conn => {
       return new Promise((resolve, reject) => {
@@ -209,4 +208,4 @@ class MysqlClient {
   }
 }
 
-module.exports = MysqlClient;
+module.exports = PostgreSQLClient;

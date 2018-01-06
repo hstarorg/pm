@@ -14,17 +14,6 @@ const doRegister = async ctx => {
   if (findUser) {
     util.throwError('用户名已存在，请修改');
   }
-  const sqlParams = {
-    UserName: reqData.UserName,
-    NickName: reqData.UserName,
-    Password: crypto.hmac_sha256(reqData.Password, config.hashSecret),
-    IsExternalUser: 0,
-    Email: '',
-    Telephone: '',
-    AvatarUrl: '',
-    UserStatus: UserStatus.Active,
-    CreateDate: Date.now()
-  };
   const userId = await db.executeInsert(AccountSqls.DO_REGISTER, sqlParams);
   ctx.body = '';
 };
