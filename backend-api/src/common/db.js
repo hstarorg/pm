@@ -1,6 +1,7 @@
 const config = require('../config');
-const { MysqlClient } = require('../db-providers');
+const { Pool } = require('pg');
+const { PostgreSQLClient } = require('../db-providers');
 
-// const pool = mysql.createPool(config.dbConfig);
+const pool = new Pool(config.dbConfig);
 
-module.exports = new MysqlClient({});
+module.exports = new PostgreSQLClient(pool);

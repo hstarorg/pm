@@ -8,7 +8,8 @@ class PostgreSQLClient {
    */
   async beginTransaction() {
     const client = await this._getClient();
-    return client.query('BEGIN');
+    await client.query('BEGIN');
+    return client;
   }
 
   /**
@@ -113,21 +114,9 @@ class PostgreSQLClient {
           return Promise.reject(err);
         });
     });
-
-    // , (err, results, fields) => {
-    //   // If conn is in transaction, not release
-    //   if (!conn.inTransaction) {
-    //     this._releaseConnection(conn);
-    //   }
-    //   // 返回查询的值
-    //   if (err) {
-    //     return reject(err);
-    //   }
-    //   resolve(results);
-    // });
-    // });
   }
-  // 格式化参数
+
+  // Format params
   _processSqlAndParameter(sqlString, params) {
     let result;
     // If is an array, direct return.

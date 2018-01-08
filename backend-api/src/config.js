@@ -11,18 +11,18 @@ module.exports = {
   sessionConfig: {
     key: 'sid', // cookie名称
     maxAge: 1000 * 60 * 60 * 24, // 24小时
-    overwrite: true, /** (boolean) can overwrite or not (default true) */
-    httpOnly: true, /** (boolean) httpOnly or not (default true) */
-    signed: true, /** (boolean) signed or not (default true) */
-    rolling: false, // 强制为每个用户设置session
+    overwrite: true /** (boolean) can overwrite or not (default true) */,
+    httpOnly: true /** (boolean) httpOnly or not (default true) */,
+    signed: true /** (boolean) signed or not (default true) */,
+    rolling: false // 强制为每个用户设置session
   },
   dbConfig: {
     host: '192.168.1.200',
-    port: '3308',
-    database: 'h5ds',
     user: 'root',
     password: 'humin',
-    connectionLimit: 10
-  },
-  fileUploadFolder: path.join(__dirname, 'upload')
+    database: 'postgres',
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000
+  }
 };

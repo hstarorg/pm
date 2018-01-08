@@ -80,7 +80,39 @@ SELECT * FROM "pm_db"."user"
     expect(rows.length).toEqual(0);
   });
 
-  it('tran commit');
+  it('tran commit', async () => {
+    const tran = await client.beginTransaction();
+    let sql = `
+    INSERT INTO "pm_db"."user"(name, age)
+VALUES(@name, @age) RETURNING id;`;
+    const changes = await client.executeNonQuery(sql, { name: 'name2', age: 222 }, tran);
+    expect(changes).toEqual(1);
+    await client.commitTransaction(tran);
+    sql = `SELECT COUNT(0)::integer FROM "pm_db"."user"`;
+    const data = await client.executeScalar(sql);
+    expect(data.count).toEqual(1);
+  });
 
-  it('tran rollback');
+  it('tran rollback', async () => {
+    const tran = await client.beginTransaction();
+    let sql = `
+    INSERT INTO "pm_db"."user"(name, age)
+VALUES(@name, @age) RETURNING id;`;
+    const changes = await client.executeNonQuery(sql, { name: 'name2', age: 222 }, tran);
+    expect(changes).toEqual(1);
+    await client.rollbackTransaction(tran);
+    sql = `SELECT COUNT(0)::integer FROM "pm_db"."user"`;
+    const data = await client.executeScalar(sql);
+    expect(data.count).toEqual(1);
+  });
+
+  it('test params', async () => {
+    let sql = `
+    INSERT INTO "pm_db"."user"(name, age) VALUES($1, $2)
+    `;
+    const data = await client.executeNonQuery(sql, ['jay2', 999]);
+    sql = `SELECT * FROM "pm_db"."user" WHERE name=$1`;
+    const user = await client.executeScalar(sql, ['jay2']);
+    expect(user.age).toEqual(999);
+  });
 });
