@@ -1,2 +1,14 @@
-# pm-web-front
-The web front for pm.
+# How to start?
+
+```bash
+# prepare
+git clone
+npm i
+
+# Run dev
+npm start
+
+# Open in browser
+# Win pc
+start http://localhost:3000
+```
