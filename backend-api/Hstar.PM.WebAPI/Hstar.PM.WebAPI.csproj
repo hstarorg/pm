@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hstar.PM.Business\Hstar.PM.Business.csproj" />
+    <ProjectReference Include="..\Hstar.PM.Core\Hstar.PM.Core.csproj" />
+  </ItemGroup>
+
 </Project>

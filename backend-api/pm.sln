@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hstar.PM.Core", "Hstar.PM.Core\Hstar.PM.Core.csproj", "{2CEE50FC-2A08-425A-8408-35ABB12F5CB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hstar.PM.Core", "Hstar.PM.Core\Hstar.PM.Core.csproj", "{2CEE50FC-2A08-425A-8408-35ABB12F5CB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hstar.PM.WebAPI", "Hstar.PM.WebAPI\Hstar.PM.WebAPI.csproj", "{85062744-D987-4BAC-887B-927E94920D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hstar.PM.WebAPI", "Hstar.PM.WebAPI\Hstar.PM.WebAPI.csproj", "{85062744-D987-4BAC-887B-927E94920D0D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{657C0FA5-05E0-4C47-805F-0034E59024BC}"
 EndProject
@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9DF7F48E-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7B75D867-38A5-445B-84C2-2A0D65E7B043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hstar.PM.WebAPI.Tests", "test\Hstar.PM.WebAPI.Tests\Hstar.PM.WebAPI.Tests.csproj", "{DB722C53-D121-49A6-8283-7657BCBCEDD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hstar.PM.WebAPI.Tests", "test\Hstar.PM.WebAPI.Tests\Hstar.PM.WebAPI.Tests.csproj", "{DB722C53-D121-49A6-8283-7657BCBCEDD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hstar.PM.Business", "Hstar.PM.Business\Hstar.PM.Business.csproj", "{F8F0EA06-C680-4B7A-B21E-F9DAB411FA92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{DB722C53-D121-49A6-8283-7657BCBCEDD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB722C53-D121-49A6-8283-7657BCBCEDD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB722C53-D121-49A6-8283-7657BCBCEDD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F0EA06-C680-4B7A-B21E-F9DAB411FA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F0EA06-C680-4B7A-B21E-F9DAB411FA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F0EA06-C680-4B7A-B21E-F9DAB411FA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F0EA06-C680-4B7A-B21E-F9DAB411FA92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

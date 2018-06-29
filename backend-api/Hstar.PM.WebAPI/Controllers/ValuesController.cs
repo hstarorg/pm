@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hstar.PM.Business;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hstar.PM.WebAPI.Controllers
@@ -10,11 +11,16 @@ namespace Hstar.PM.WebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IAccountBusiness _accountBiz;
+        public ValuesController(IAccountBusiness accountBiz)
+        {
+            this._accountBiz = accountBiz;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value1", "value2", this._accountBiz.GetName() };
         }
 
         // GET api/values/5
