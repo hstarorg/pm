@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Hstar.PM.Core.Extensions;
+using Hstar.PM.Core.Models;
+using Hstar.PM.WebAPI.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -48,10 +50,26 @@ namespace Hstar.PM.WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.UseSimpleExceptionHandler(env, res =>
             {
-                app.UseDeveloperExceptionPage();
-            }
+                if (res.Error is BusinessException bizEx)
+                {
+                    return new ObjectResult(new
+                    {
+                        StatusCode = bizEx.StatusCode,
+                        Message = bizEx.Message,
+                        StackTrace = env.IsDevelopment() ? bizEx.StackTrace :null
+                    });
+                }
+                return null;
+            });
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+
+            // Cors support
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
