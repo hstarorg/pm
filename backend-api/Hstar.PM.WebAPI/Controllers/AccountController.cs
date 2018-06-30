@@ -17,6 +17,10 @@ namespace Hstar.PM.WebAPI.Controllers
             this._accountBiz = accountBiz;
         }
 
+        /// <summary>
+        /// Execute login
+        /// </summary>
+        /// <returns></returns>
         [HttpGet, Route("login")]
         public ActionResult<IEnumerable<string>> Get()
         {

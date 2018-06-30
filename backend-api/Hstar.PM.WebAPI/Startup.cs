@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Hstar.PM.Core.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Hstar.PM.WebAPI
 {
@@ -26,6 +29,19 @@ namespace Hstar.PM.WebAPI
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "pm service",
+                    Version = "v1",
+                    Description = "The pm project backend services."
+                });
+                // System.Reflection.Assembly.GetExecutingAssembly().GetName().Name also OK.
+                string xmlCommentName = $"{this.GetType().Assembly.GetName().Name}.xml";
+                string xmlCommentPath = Path.Combine(AppContext.BaseDirectory, xmlCommentName);
+                c.IncludeXmlComments(xmlCommentPath, true);
+            });
             return services.ToIocProvider();
         }
 
@@ -36,6 +52,12 @@ namespace Hstar.PM.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.RoutePrefix = "swagger"; // 这个的作用的配置swagger UI的路由
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "pm service v1");
+            });
 
             app.UseMvc();
         }
